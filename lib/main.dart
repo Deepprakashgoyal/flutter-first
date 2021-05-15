@@ -16,8 +16,29 @@ class HomePage extends StatelessWidget {
         title: Text("First Flutter App"),
       ),
       body: Container(
-        child: Center(child: Text("Hello world"),),
-      ),
+        color: Colors.black,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Row(
+          children: <Widget>[
+            Container(
+              width: 100,
+              height: 100,
+              color: Colors.red,
+            ),
+            Container(
+              width: 100,
+              height: 100,
+              color: Colors.lime,
+            ),
+            Container(
+              width: 100,
+              height: 100,
+              color: Colors.green,
+            )
+          ]
+        )
+      )
     );
   }
 }
