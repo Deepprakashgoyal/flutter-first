@@ -1,44 +1,72 @@
+import 'package:first/drawer.dart';
 import 'package:flutter/material.dart';
 
-void main(){
+void main() {
   runApp(MaterialApp(
     title: "First App",
-    home: HomePage()
+    home: HomePage(),
+    theme: ThemeData(primarySwatch: Colors.deepOrange),
   ));
 }
 
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
 
-class HomePage extends StatelessWidget {
+class _HomePageState extends State<HomePage> {
+  TextEditingController _nameController = TextEditingController();
+  var myText = "Chage This Text";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("First Flutter App"),
       ),
-      body: Container(
-        color: Colors.black,
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: Row(
-          children: <Widget>[
-            Container(
-              width: 100,
-              height: 100,
-              color: Colors.red,
+      backgroundColor: Colors.grey[200],
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: SingleChildScrollView(
+          child: Card(
+            child: Column(
+              children: <Widget>[
+                Image.asset("assets/bg.jpg"),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  myText,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: TextField(
+                    controller: _nameController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Please enter something here",
+                      labelText: "Your Name",
+                    ),
+                  ),
+                )
+              ],
             ),
-            Container(
-              width: 100,
-              height: 100,
-              color: Colors.lime,
-            ),
-            Container(
-              width: 100,
-              height: 100,
-              color: Colors.green,
-            )
-          ]
-        )
-      )
+          ),
+        ),
+      ),
+      drawer: MyDrawer(),
+      // ignore: missing_required_param
+
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          myText = _nameController.text;
+          setState(() {});
+        },
+        child: Icon(Icons.refresh),
+      ),
     );
   }
 }
