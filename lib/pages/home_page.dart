@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:first/utils/constants.dart';
 import "package:flutter/material.dart";
 import '../drawer.dart';
 import 'package:http/http.dart' as http;
@@ -35,9 +36,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("First Flutter App"),
-      ),
+      appBar: AppBar(title: Text("First Flutter App"), actions: [
+        IconButton(
+            icon: Icon(Icons.exit_to_app),
+            onPressed: () {
+              Constants.prefs.setBool("loggedIn", false);
+              Navigator.pushReplacementNamed(context, "/login");
+            })
+      ]),
       backgroundColor: Colors.grey[200],
       body: Padding(
         padding: EdgeInsets.all(16),

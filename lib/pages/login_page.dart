@@ -1,3 +1,4 @@
+import 'package:first/utils/constants.dart';
 import "package:flutter/material.dart";
 
 class LoginPage extends StatelessWidget {
@@ -46,7 +47,9 @@ class LoginPage extends StatelessWidget {
                               padding: const EdgeInsets.all(8),
                               child: ElevatedButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(context, "/home");
+                                  Constants.prefs.setBool("loggedIn", true);
+                                  Navigator.pushReplacementNamed(
+                                      context, "/home");
                                 },
                                 child: Text("Submit"),
                               ),
